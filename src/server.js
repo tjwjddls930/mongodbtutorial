@@ -9,9 +9,12 @@ const { generateFakeData } = require('../faker2');
 // import mongoose from 'mongoose';
 
 // const users = [];
-const MONGO_URI = 'mongodb+srv://jungin09307:Fetgew5CzlxPvqsP@mongodbtutorial.6brvvqo.mongodb.net/?retryWrites=true&w=majority'
+
 const server = async() => {
     try{
+        const { MONGO_URI } = process.env;
+        if(!MONGO_URI) throw new Error("MONGO_URI is required");
+
         await mongoose.connect(MONGO_URI, { 
             useNewUrlParser: true, 
             useUnifiedTopology: true 
